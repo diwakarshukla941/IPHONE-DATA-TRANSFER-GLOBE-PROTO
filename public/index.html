@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#081b2a" />
+    <title>Pulse Pair</title>
+    <link rel="stylesheet" href="/styles.css?v=particle-v3" />
+  </head>
+  <body>
+    <main class="shell">
+      <header><span class="mark">P</span><span>PULSE PAIR</span><span class="prototype">PROTOTYPE</span></header>
+      <section id="start" class="panel hero">
+        <p class="eyebrow">PROXIMITY PAIRING</p>
+        <h1>A visual hello<br />between two phones.</h1>
+        <p class="intro">Create a temporary pairing pulse on one device. Scan it from another to make a short-lived shared session.</p>
+        <button id="create" class="button primary">Create a pairing pulse <span>→</span></button>
+        <button id="openScanner" class="button quiet">Scan a pulse</button>
+        <p class="fineprint">Demo only. Pairing codes expire in two minutes; messages live only in this server’s memory.</p>
+      </section>
+
+      <section id="host" class="panel hidden">
+        <p class="eyebrow">YOUR PAIRING PULSE</p>
+        <h2>Let the other phone<br />look at this.</h2>
+        <div class="pulse-frame"><div class="rings"></div><canvas id="qrcode" aria-label="Pairing QR code"></canvas><div class="glow"></div></div>
+        <p class="instruction">Open <strong>Scan a pulse</strong> on the other device, then point its camera here.</p>
+        <div class="code-row"><span>BACKUP CODE</span><strong id="hostCode"></strong></div>
+        <p id="hostStatus" class="status">Waiting for a nearby phone…</p>
+        <button class="button quiet reset">Cancel session</button>
+      </section>
+
+      <section id="scan" class="panel hidden">
+        <button class="back">← Back</button>
+        <p class="eyebrow">SCAN A PULSE</p>
+        <h2>Find the moving<br />signal.</h2>
+        <div class="camera"><video id="video" playsinline muted></video><canvas id="scanCanvas" hidden></canvas><div class="scan-line"></div><p id="cameraMessage">Allow camera access to scan.</p></div>
+        <button id="startCamera" class="button primary">Open camera</button>
+        <div class="manual"><label for="manualCode">Or enter the 10-character backup code</label><div><input id="manualCode" maxlength="10" autocomplete="off" /><button id="manualJoin">Pair</button></div></div>
+      </section>
+
+      <section id="paired" class="panel hidden">
+        <p class="eyebrow">PAIRING COMPLETE</p>
+        <div class="paired-orb">✓</div>
+        <h2>Two devices,<br />one moment.</h2>
+        <p class="instruction">This demo has established a temporary shared room. Send a test message to prove the connection.</p>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <form id="messageForm" class="message-form"><input id="messageText" maxlength="280" placeholder="Send a test message" /><button>Send</button></form>
+        <button class="button quiet reset">Start over</button>
+      </section>
+    </main>
+    <script src="/vendor-qrcode.js"></script>
+    <script src="/app.js?v=particle-v3"></script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.vite/
+video-thumbnail.png
+vendor/
+*.log
